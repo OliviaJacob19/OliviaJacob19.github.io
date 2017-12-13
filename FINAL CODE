@@ -13,10 +13,11 @@ Includes code from (title, author, URL):
  
  */
 
-
+//function variables
 var slider;
 var whatsup;
 
+//image variables
 var hand;
 var img2;
 var img3;
@@ -44,6 +45,7 @@ var myLink;
 
 var index=0;
 
+// load images
 function preload(){
   myFont=  loadFont('JosefinSans-SemiBold.ttf');
   hand = loadImage("hand-and-arm-hi.png"); //http://www.clker.com/clipart-hand-and-arm.html
@@ -77,7 +79,7 @@ function setup() {
   textFont(myFont);
   slider = createSlider(1860, 2030,1860,10);
   image(hand, 350,150,800,300);
-  imgX=[img2,img3,img4,img5,img6,img7,img8,img9,img10,img12,img13,img14,img15,img16,img17,img18,img19,img20];
+  imgX=[img2,img3,img4,img5,img6,img7,img8,img9,img10,img12,img13,img14,img15,img16,img17,img18,img19,img20]; //array of objects
   myLink = createA('https://www.youtube.com/watch?v=bYosgmZa25c','of a baby who is VERY excited about watch history!');
   myLink.style("font-size", "18px");
   myLink.style("color", "#ff0000");
@@ -86,21 +88,21 @@ function setup() {
 
 }
 
-function hand(){
-  image(hand, 350,150,800,300);
-}
+//function hand(){
+  //image(hand, 350,150,800,300);
+//}
 
 function draw() {
   background(184, 196, 216);
   textboxes();
   image(hand, 350,150,800,300);
-  image(imgX[index%imgX.length],700,200,180,180);
+  image(imgX[index%imgX.length],700,200,180,180);//rotation of watch images
   slider.position(600, 400);
   slider.style('width', '110px');
   whatsup = slider.value();
-  var hi = map(whatsup,1860,2030,580,710);
+  var hi = map(whatsup,1860,2030,580,710); //slider date
   text(whatsup, hi, 400);
-  slider.changed(changeWatch)
+  slider.changed(changeWatch) //slider and watch coinside
   textSize(40);
   text("The History Of The Watch",450,60)
   textSize(20);
@@ -108,10 +110,11 @@ function draw() {
 }
 
 function changeWatch(){
-  index = ((slider.value()-1860)/10);
+  index = ((slider.value()-1860)/10); //watch change
   background(184, 196, 216);
 }
 
+//date change
 function changeDate() {
 slider.value(whatsup+10);
 console.log(whatsup);
@@ -124,7 +127,7 @@ if (whatsup>2020){
   index = index+1;
   background(184, 196, 216);
 }
-
+//text for each watch
  function textboxes(){
  if (whatsup==1860){
    text("The 1860s saw the first development of the wristwatches. People began innovating clocks to be smaller and fit on one’s wrist, but didn’t officially make the wristwatch until 1868 when Patek Philippe of Patek Philippe & Co. made the first wristwatch.",400,450,550,800);
